@@ -6,7 +6,7 @@ class BibliotecaController{
         try {
           const [result] = await pool.query('SELECT * FROM libros');
             if (result.length === 0) {
-            res.status(404).json({ error: 'No hay libros en la base de datos' });
+            res.status(404).json({ error: 'No existen ningun libro en la base de datos' });
         } else {
             res.json(result);
         }
@@ -20,13 +20,13 @@ class BibliotecaController{
             const libro = req.body;
             const [result] = await pool.query(`SELECT * FROM libros WHERE ISBN= (?)`, [libro.ISBN]);
             if (result.length == 0) {
-            res.status(404).json({ error: 'El libro no existe' });
+            res.status(404).json({ error: 'El libro proporcionado  no existe' });
         } else {
             res.json(result);
         }
         } catch (error) {
             console.error(error);
-            res.status(500).json({ error: 'Error al buscar el libro' });
+            res.status(500).json({ error: 'Error libro no encontrado' });
         }
     }
     
