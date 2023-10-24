@@ -1,0 +1,23 @@
+[33mcommit 6e75968fe1e3b15b89ac167c0b0fd2cfa5d54406[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: maidanaen <maidanaenzosebastian@gmail.com>
+Date:   Mon Oct 23 21:09:50 2023 -0300
+
+    manejo de errores
+
+[33mcommit 5d54cd40eb912b63bbfa871ae18832bd97fae534[m[33m ([m[1;31mrest-api-MAIDANA_ENZO/master[m[33m)[m
+Author: maidanaen <maidanaenzosebastian@gmail.com>
+Date:   Mon Oct 23 18:57:54 2023 -0300
+
+    nuevos controller
+
+[33mcommit c3bdd51e47d0dd6740dd7d3fc4a8d610508a15b5[m[33m ([m[1;31mrest-api/master[m[33m)[m
+Author: maidanaen <maidanaenzosebastian@gmail.com>
+Date:   Tue Oct 17 00:24:01 2023 -0300
+
+    script
+
+[33mcommit 665ff86b5ed8cc743cb870f626629fcc4d8365a8[m
+Author: maidanaen <maidanaenzosebastian@gmail.com>
+Date:   Mon Oct 16 23:59:05 2023 -0300
+
+    creacion REST-API
