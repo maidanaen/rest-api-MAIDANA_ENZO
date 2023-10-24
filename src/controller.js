@@ -5,7 +5,7 @@ class BibliotecaController{
     async getALL(req, res){
         try {
           const [result] = await pool.query('SELECT * FROM libros');
-            if (result.length === 0) {
+            if (result.length == 0) {
             res.status(404).json({ error: 'No existen ningun libro en la base de datos' });
         } else {
             res.json(result);
