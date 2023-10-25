@@ -6,7 +6,7 @@ class BibliotecaController{
         try {
           const [result] = await pool.query('SELECT * FROM libros');
             if (result.length == 0) {
-            res.status(404).json({ error: 'No existen ningun libro en la base de datos' });
+            res.status(404).json({ error: 'No existen ningun libro en la base de datos'});
         } else {
             res.json(result);
         }
@@ -17,8 +17,8 @@ class BibliotecaController{
     }   
     async getOne(req, res) {
         try {
-            const libro = req.body;
-            const [result] = await pool.query(`SELECT * FROM libros WHERE ISBN= (?)`, [libro.ISBN]);
+            const libro = req.params.ISBN;
+            const [result] = await pool.query(`SELECT * FROM libros WHERE ISBN= (?)`, [libro]);
             if (result.length == 0) {
             res.status(404).json({ error: 'El libro proporcionado  no existe' });
         } else {
@@ -48,9 +48,10 @@ class BibliotecaController{
     async update(req, res){
         try {
             const libro=req.body;
-            const [result]= await pool.query(`UPDATE  libros SET nombre= (?), autor= (?), categoria= (?), año_publicacion= (?) WHERE ISBN= (?) `,[libro.nombre,libro.autor,libro.categoria,libro.año_publicacion, libro.ISBN]);
+            const lib=req.params.ISBN
+            const [result]= await pool.query(`UPDATE  libros SET nombre= (?), autor= (?), categoria= (?), año_publicacion= (?) WHERE ISBN= (?) `,[libro.nombre,libro.autor,libro.categoria,libro.año_publicacion, lib]);
             if (result.changedRows == 0) {
-            res.status(404).json({ error: 'El libro no existe' });
+            res.status(404).json({ error: 'El libro correspondiente al ISBN proporcionado no existe ' });
         } else {
             res.json({"Libros actualizados correctamente": result.changedRows});
         }
@@ -62,10 +63,10 @@ class BibliotecaController{
     
     async delete(req, res){
         try {
-            const libro=req.body;
-            const [result]= await pool.query(`DELETE FROM libros WHERE ISBN = (?)`,[libro.ISBN]);
+            const libro=req.params.ISBN;
+            const [result]= await pool.query(`DELETE FROM libros WHERE ISBN = (?)`,[libro]);
         if (result.affectedRows == 0) {
-            res.status(404).json({ error: 'El libro no existe' });
+            res.status(404).json({ error: 'El libro que se intenta eliminar no existe' });
         } else {
             res.json({"Libros eliminados correctamente": result.affectedRows});
         }
@@ -74,8 +75,7 @@ class BibliotecaController{
         res.status(500).json({ error: 'Error al eliminar el libro' });
         }
     }
-      
-    
+
 }
 
 export const libro = new BibliotecaController();
